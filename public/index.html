@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MAISON NOIR – Modern Essentials</title>
+<style>
+:root{--bg:#fff;--fg:#111;--mut:#6b6b6b;--line:#e6e6e6;--card:#f3f2ef;--inv:#111;--invt:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e0e0e;--fg:#f2f2f2;--mut:#9a9a9a;--line:#2a2a2a;--card:#1b1b1a;--inv:#f2f2f2;--invt:#111;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e0e0e;--fg:#f2f2f2;--mut:#9a9a9a;--line:#2a2a2a;--card:#1b1b1a;--inv:#f2f2f2;--invt:#111;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 "Helvetica Neue",Helvetica,Arial,sans-serif;letter-spacing:.02em}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer;color:inherit}
+.bar{background:var(--inv);color:var(--invt);text-align:center;font-size:11px;letter-spacing:.14em;padding:8px;text-transform:uppercase}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line);display:grid;grid-template-areas:"n l t";grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 4vw}
+header nav{grid-area:n;display:flex;gap:22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+header nav a:hover{text-decoration:underline;text-underline-offset:6px}
+.logo{grid-area:l;font-size:20px;letter-spacing:.35em;font-weight:600}
+.tools{grid-area:t;display:flex;gap:14px;justify-content:flex-end;align-items:center}
+.tools button,.tools select{background:none;border:0;padding:0;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg)}
+@media(max-width:800px){header{grid-template-areas:"l t" "n n";grid-template-columns:1fr auto;row-gap:10px}header nav{overflow-x:auto;white-space:nowrap;gap:18px}}
+.btn{display:inline-block;background:var(--inv);color:var(--invt);border:1px solid var(--inv);padding:15px 34px;font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+.btn.o{background:none;color:var(--fg);border-color:var(--fg)}
+.lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.sec{padding:60px 4vw}.sec h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin:0 0 22px;display:flex;justify-content:space-between}
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:82vh}
+.hero .txt{display:flex;flex-direction:column;justify-content:flex-end;padding:6vw 4vw}
+.hero h1{font-size:clamp(42px,7.4vw,104px);line-height:.93;font-weight:300;margin:0 0 20px;letter-spacing:-.03em}
+.hero p{max-width:400px;color:var(--mut);margin:0 0 28px}
+.hero .img{background:linear-gradient(160deg,#d6cfc3,#8d8578 55%,#2e2c28);overflow:hidden}.hero .img svg{width:100%;height:100%}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.hero .img{min-height:52vh;order:-1}}
+.mq{overflow:hidden;white-space:nowrap;border-block:1px solid var(--line);padding:14px 0}
+.mq span{display:inline-block;padding-inline-start:100%;animation:mq 30s linear infinite;font-size:12px;letter-spacing:.3em;text-transform:uppercase}
+@keyframes mq{to{transform:translateX(-100%)}}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.cat{aspect-ratio:3/4;display:flex;align-items:flex-end;padding:20px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 8px}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:1fr}.cat{aspect-ratio:4/3}}
+.pc .ph{aspect-ratio:3/4;background:var(--card);position:relative;overflow:hidden}
+.pc .ph>a{display:block;height:100%}.pc svg{width:100%;height:100%;display:block;transition:transform .6s}
+.pc:hover .ph svg{transform:scale(1.05)}
+.tag{position:absolute;top:10px;inset-inline-start:10px;font-size:10px;letter-spacing:.14em;background:var(--bg);padding:3px 8px;text-transform:uppercase}
+.heart{position:absolute;top:6px;inset-inline-end:8px;background:none;border:0;font-size:19px;line-height:1;z-index:2}
+.qa{position:absolute;inset:auto 0 0;background:var(--bg);display:flex;transform:translateY(100%);transition:transform .25s;border-top:1px solid var(--line)}
+.pc:hover .qa,.pc:focus-within .qa{transform:none}
+.qa button{flex:1;background:none;border:0;padding:12px 0;font-size:11px}.qa button:hover{background:var(--inv);color:var(--invt)}
+.qa button:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+@media(hover:none){.qa{display:none}}
+.pc .n{margin-top:10px;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.pc .pr{color:var(--mut);font-size:12px}
+.band{background:var(--card);text-align:center;padding:90px 4vw}.band h3{font-size:clamp(26px,4vw,48px);font-weight:300;margin:0 0 20px;letter-spacing:-.01em}
+.rv3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.rv3 div{background:var(--card);padding:24px}
+@media(max-width:800px){.rv3{grid-template-columns:1fr}}
+.perks{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;border-top:1px solid var(--line)}.perks div{padding:34px 10px}
+@media(max-width:800px){.perks{grid-template-columns:1fr}}
+footer{background:var(--inv);color:var(--invt);padding:56px 4vw 28px;font-size:12px}
+.fc{display:flex;flex-wrap:wrap;gap:40px;justify-content:space-between;margin-bottom:34px}
+footer h4{letter-spacing:.16em;text-transform:uppercase;margin:0 0 12px;font-weight:500}footer a{display:block;opacity:.7;margin:5px 0}
+footer input{background:none;border:0;border-bottom:1px solid currentColor;color:inherit;padding:8px 0;width:200px;font:inherit}
+footer .nlb{background:none;border:0;color:inherit;text-decoration:underline}
+.shop{display:grid;grid-template-columns:230px 1fr;gap:4vw;padding:28px 4vw 64px}
+@media(max-width:800px){.shop{grid-template-columns:1fr}}
+.grp{margin-bottom:24px}.grp .lbl{display:block;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{background:none;border:1px solid var(--line);padding:8px 14px;font-size:12px}.chips button.on{background:var(--inv);color:var(--invt);border-color:var(--inv)}
+.chips .dot{width:26px;height:26px;padding:0;border-radius:50%;outline-offset:3px}.chips .dot.on{outline:1px solid var(--fg);background-clip:padding-box}
+input[type=range]{width:100%;accent-color:var(--fg)}
+.shead{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:10px}
+select.s,.f input{background:var(--bg);color:var(--fg);border:1px solid var(--line);padding:11px 12px;font:inherit}
+.f input{width:100%;margin:0 0 10px}.none{color:var(--mut);padding:40px 0}
+.pd{display:grid;grid-template-columns:1.25fr 1fr;gap:4vw;padding:24px 4vw 56px}
+@media(max-width:800px){.pd{grid-template-columns:1fr}}
+.main{aspect-ratio:4/5;background:var(--card);overflow:hidden;cursor:zoom-in}.main svg{width:100%;height:100%;display:block;transition:transform .2s}.main.z{cursor:zoom-out}
+.th{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+.th button{padding:0;border:1px solid var(--line);background:var(--card);aspect-ratio:1;overflow:hidden}.th button.on{border-color:var(--fg)}.th svg{width:100%;height:100%}
+.info{position:sticky;top:90px;align-self:start}.info h1{font-size:22px;font-weight:400;text-transform:uppercase;letter-spacing:.08em;margin:6px 0}
+.crumb{font-size:11px;color:var(--mut);letter-spacing:.1em;text-transform:uppercase}
+.sw{display:flex;gap:10px;margin:8px 0 20px}.sw button{width:26px;height:26px;border-radius:50%;border:1px solid var(--line);outline-offset:3px}.sw button.on{outline:1px solid var(--fg)}
+.sz{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:8px 0 8px}
+.sz button{background:none;border:1px solid var(--line);padding:12px 0;font-size:12px}.sz button.on{background:var(--inv);color:var(--invt);border-color:var(--inv)}
+.sz button:disabled{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.row{display:flex;gap:8px;margin:16px 0}.qty{display:flex;align-items:center;border:1px solid var(--line)}.qty button{background:none;border:0;padding:8px 12px}.qty span{min-width:22px;text-align:center}
+.add{flex:1;width:100%;padding:17px;border:0;background:var(--inv);color:var(--invt);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.hl{border:1px solid var(--line);background:none;width:52px;font-size:20px}
+.acc{border-top:1px solid var(--line);margin-top:22px}.acc details{border-bottom:1px solid var(--line);padding:14px 0}
+.acc summary{cursor:pointer;letter-spacing:.1em;text-transform:uppercase;font-size:12px}.acc p{color:var(--mut);margin:10px 0 0}
+.lk{background:none;border:0;color:var(--mut);text-decoration:underline;font-size:11px;padding:0}
+#drawer{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(430px,100%);background:var(--bg);border-inline-start:1px solid var(--line);z-index:30;transform:translateX(100%);transition:transform .3s;padding:calc(22px + env(safe-area-inset-top,0px)) 22px calc(22px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column}
+[dir=rtl] #drawer{transform:translateX(-100%)}#drawer.open{transform:none!important}
+#cartlist{flex:1;overflow:auto}
+.ci{display:flex;gap:12px;border-bottom:1px solid var(--line);padding:14px 0;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.ci small{display:block;color:var(--mut)}.cim{width:64px;height:84px;background:var(--card);flex:none}.cim svg{width:100%;height:100%}
+.ci .qty{display:inline-flex;margin-top:6px}
+.prog{height:3px;background:var(--line);margin:6px 0 14px}.prog i{display:block;height:100%;background:var(--fg);transition:width .3s}
+.sm{display:flex;justify-content:space-between;padding:4px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;display:none;align-items:center;justify-content:center;padding:16px}.modal.on{display:flex}
+.box{background:var(--bg);max-width:480px;width:100%;max-height:90vh;overflow:auto;padding:26px;position:relative}
+.x{position:absolute;top:8px;inset-inline-end:12px;background:none;border:0;font-size:22px}
+.sr{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:13px}td,th{padding:8px;border-bottom:1px solid var(--line);text-align:center}
+.wa{position:fixed;inset-inline-end:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:20;background:#25d366;color:#fff;border-radius:50%;width:48px;height:48px;display:grid;place-items:center;font-size:22px}
+.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%);background:var(--inv);color:var(--invt);padding:12px 22px;font-size:12px;letter-spacing:.08em;display:none;z-index:50;max-width:90vw;text-align:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bar" id="ann"></div>
+<header>
+  <nav><a href="#shop" data-cat="" data-new="1" data-i="new"></a><a href="#shop" data-cat="Women" data-i="women"></a><a href="#shop" data-cat="Men" data-i="men"></a><a href="#shop" data-cat="Accessories" data-i="acc"></a></nav>
+  <a class="logo" href="#">MAISON NOIR</a>
+  <div class="tools"><button id="sb" data-i="search"></button>
+    <select id="lg" aria-label="Language"><option value="en">EN</option><option value="fr">FR</option><option value="ar">AR</option></select>
+    <a href="#wishlist" aria-label="Wishlist">♡ <span id="wn">0</span></a>
+    <button id="cb"><span data-i="bag"></span> (<span id="cn">0</span>)</button></div>
+</header>
+<main id="app"></main>
+<footer>
+  <div class="fc">
+    <div><h4>MAISON NOIR</h4><a href="#about">About</a><a href="#contact">Contact</a></div>
+    <div><h4>Help</h4><a href="#shipping">Shipping</a><a href="#returns">Returns</a><a href="#" id="fg">Size guide</a></div>
+    <div><h4>Legal</h4><a href="#privacy">Privacy</a><a href="#terms">Terms</a></div>
+    <div><h4>Newsletter</h4><input id="nle" type="email" placeholder="Email" aria-label="Email"> <button class="nlb" id="nlb">→</button></div>
+  </div>
+  <div style="opacity:.6">© <span id="yr"></span> MAISON NOIR · Visa · Mastercard · Cash on delivery</div>
+</footer>
+<aside id="drawer" aria-label="Bag">
+  <div style="display:flex;justify-content:space-between;margin-bottom:12px"><b class="lbl" style="color:var(--fg)" data-i="bag"></b><button class="lk" data-x="1" data-i="close"></button></div>
+  <div class="lbl" id="ptxt"></div><div class="prog"><i id="prog"></i></div>
+  <div id="cartlist"></div>
+  <div style="padding-top:12px"><div class="sm"><span class="lbl" data-i="sub"></span><span id="sub"></span></div><div class="sm"><span class="lbl" data-i="ship"></span><span id="shp"></span></div><div class="sm"><b data-i="total"></b><b id="tot"></b></div></div>
+  <button class="add" id="co" style="flex:none;margin-top:12px" data-i="card"></button>
+  <button class="add" id="cod" style="flex:none;margin-top:8px;background:none;color:var(--fg);border:1px solid var(--fg)" data-i="cod"></button>
+</aside>
+<div class="modal" id="ck"><div class="box"><button class="x" data-x="1" aria-label="Close">×</button><div id="ckb"></div></div></div>
+<div class="modal" id="sm" style="align-items:flex-start"><div class="box" style="margin-top:8vh"><button class="x" data-x="1" aria-label="Close">×</button><input id="sq" class="s" style="width:100%;border:0;border-bottom:1px solid var(--fg);padding:12px 0;background:none;color:var(--fg);font:inherit;outline:none" data-ph="search" autocomplete="off"><div id="sr"></div></div></div>
+<div class="modal" id="gm"><div class="box"><button class="x" data-x="1" aria-label="Close">×</button><h3 style="font-weight:400;letter-spacing:.1em;text-transform:uppercase;font-size:14px" data-i="sizeg"></h3>
+<table><tr><th>Size</th><th>Chest (cm)</th><th>Waist (cm)</th></tr><tr><td>XS</td><td>82–86</td><td>66–70</td></tr><tr><td>S</td><td>86–90</td><td>70–74</td></tr><tr><td>M</td><td>90–96</td><td>74–80</td></tr><tr><td>L</td><td>96–102</td><td>80–86</td></tr><tr><td>XL</td><td>102–108</td><td>86–92</td></tr></table><p class="lbl">Approximate body measurements. Between sizes? Size up for a relaxed fit.</p></div></div>
+<a class="wa" href="https://wa.me/212600000000" aria-label="WhatsApp">💬</a>
+<div class="toast" id="toast"></div>
+<script>
+var $=function(i){return document.getElementById(i)};
+var LS={g:function(k,d){try{var v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},s:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+var SZ=["XS","S","M","L","XL"];
+var SH={coat:"M96 74L150 58 204 74 252 118 236 246 214 242 212 340 88 340 86 242 64 246 48 118Z",jacket:"M96 74L150 58 204 74 250 114 238 236 214 230 212 290 88 290 86 230 62 236 50 114Z",tee:"M104 80L150 66 196 80 252 112 232 160 204 146 204 280 96 280 96 146 68 160 48 112Z",hood:"M96 84L150 70 204 84 250 118 238 240 214 234 212 296 88 296 86 234 62 240 50 118Z",knit:"M112 86V62Q150 50 188 62V86L252 122 244 282 214 278 212 150 204 300 96 300 88 150 86 278 56 282 48 122Z",pants:"M104 70H196L208 335 168 335 150 150 132 335 92 335Z",skirt:"M114 90H186L244 335H56Z",bag:"M78 170H222L236 325H64Z"};
+var P=[
+{id:"p1",n:"Oversized wool coat",pr:289,tag:"New",t:"coat",cat:"Women",c:["#2b2a28","#a89b86","#5b6470"],cn:["Charcoal","Camel","Slate"],r:4.8,rc:126,f:"80% wool, 20% polyamide. Dry clean."},
+{id:"p2",n:"Essential cotton tee",pr:39,tag:"",t:"tee",cat:"Men",c:["#f1efe9","#111111","#7d8a74"],cn:["Ecru","Black","Sage"],r:4.6,rc:412,f:"100% organic cotton. Machine wash 30°."},
+{id:"p3",n:"Straight-leg trousers",pr:99,tag:"New",t:"pants",cat:"Men",c:["#3b3a37","#c9bfae","#1f2a3a"],cn:["Graphite","Sand","Navy"],r:4.7,rc:208,f:"98% cotton, 2% elastane. Machine wash 30°."},
+{id:"p4",n:"Knit turtleneck",pr:89,tag:"",t:"knit",cat:"Women",c:["#d8cfc0","#2b2a28","#7a4b3a"],cn:["Oat","Black","Rust"],r:4.9,rc:174,f:"100% merino wool. Hand wash cold."},
+{id:"p5",n:"Leather tote bag",pr:179,tag:"Best seller",t:"bag",cat:"Accessories",c:["#3a2a20","#111111","#b58f64"],cn:["Espresso","Black","Tan"],r:4.8,rc:301,f:"Full-grain leather. Wipe clean."},
+{id:"p6",n:"Relaxed denim jacket",pr:129,tag:"",t:"jacket",cat:"Men",c:["#4a5f78","#1c2530","#c7d0da"],cn:["Indigo","Midnight","Washed"],r:4.5,rc:97,f:"100% cotton denim. Machine wash 30°."},
+{id:"p7",n:"Pleated midi skirt",pr:79,tag:"New",t:"skirt",cat:"Women",c:["#111111","#a89b86","#6b2f3a"],cn:["Black","Taupe","Bordeaux"],r:4.6,rc:83,f:"100% recycled polyester. Machine wash 30°."},
+{id:"p8",n:"Heavyweight hoodie",pr:95,tag:"",t:"hood",cat:"Men",c:["#8d8578","#111111","#e8e4da"],cn:["Stone","Black","Bone"],r:4.7,rc:256,f:"100% brushed cotton. Machine wash 30°."}];
+var byId=function(i){return P.filter(function(p){return p.id===i})[0]};
+var INFO={shipping:["Shipping","Orders ship within 1–2 business days. Delivery takes 2–5 days in Morocco and 5–10 days internationally. Shipping is free over $120, otherwise $9."],returns:["Returns","Return unworn items with tags within 30 days for a full refund. Contact us with your order number to start a return."],privacy:["Privacy","We collect only what we need to fulfil your order: name, address, phone and email. Card details are handled by our payment provider and never stored by us. We never sell your data."],terms:["Terms","By placing an order you agree to our pricing, delivery and returns policies. We may cancel orders affected by pricing or stock errors."],about:["About","MAISON NOIR makes modern essentials in natural fabrics, designed to be worn for years, not seasons."],contact:["Contact","hello@maisonnoir.example · WhatsApp +212 600 000 000 · Mon–Sat, 9:00–18:00"]};
+var V={en:{new:"New",women:"Women",men:"Men",acc:"Accessories",all:"All",search:"Search",bag:"Bag",add:"Add to bag",pick:"Select a size",added:"Added to bag",empty:"Your bag is empty",total:"Total",sub:"Subtotal",ship:"Shipping",free:"Free",card:"Pay by card",cod:"Cash on delivery",close:"Close",name:"Full name",phone:"Phone",email:"Email",addr:"Address",city:"City",place:"Place order",left:"left",sold:"Sold out",size:"Size",color:"Colour",sizeg:"Size guide",look:"Complete the look",price:"Max price",nonly:"New arrivals only",feat:"Featured",lo:"Price: low to high",hi:"Price: high to low",top:"Top rated",none:"No products match.",viewall:"View all",rem:"Remove",rev:"Reviews",shop:"Shop",nw:"New arrivals",bs:"Best sellers",h1:"Quiet luxury, everyday.",hp:"Considered silhouettes in natural fabrics. Designed to be worn for years, not seasons.",cta:"Shop the collection",bh:"Built from the finest fabrics, cut for a modern wardrobe.",knit:"Discover knitwear",a1:"Free shipping over $120",a2:"Free returns for 30 days",a3:"Cash on delivery available",away:"Add {x} for free shipping",secure:"You’ll enter delivery and card details on our secure payment page.",ok:"Order placed. We will contact you to confirm.",off:"Can’t reach the server. Deploy the project to take real orders.",deliv:"Estimated delivery",ins:"In stock",fill:"Please fill in all required fields",wl:"Your wishlist is empty."},
+fr:{new:"Nouveautés",women:"Femme",men:"Homme",acc:"Accessoires",all:"Tout",search:"Rechercher",bag:"Panier",add:"Ajouter au panier",pick:"Choisissez une taille",added:"Ajouté au panier",empty:"Votre panier est vide",total:"Total",sub:"Sous-total",ship:"Livraison",free:"Offerte",card:"Payer par carte",cod:"Paiement à la livraison",close:"Fermer",name:"Nom complet",phone:"Téléphone",email:"E-mail",addr:"Adresse",city:"Ville",place:"Passer la commande",left:"restant(s)",sold:"Épuisé",size:"Taille",color:"Couleur",sizeg:"Guide des tailles",look:"Complétez le look",price:"Prix max",nonly:"Nouveautés uniquement",feat:"Sélection",lo:"Prix croissant",hi:"Prix décroissant",top:"Mieux notés",none:"Aucun produit.",viewall:"Tout voir",rem:"Retirer",rev:"Avis",shop:"Boutique",nw:"Nouveautés",bs:"Meilleures ventes",h1:"Le luxe discret, au quotidien.",hp:"Des silhouettes soignées en matières naturelles. Conçues pour durer des années, pas une saison.",cta:"Découvrir la collection",bh:"Des matières d’exception, coupées pour une garde-robe moderne.",knit:"Découvrir la maille",a1:"Livraison offerte dès 120 $",a2:"Retours gratuits sous 30 jours",a3:"Paiement à la livraison disponible",away:"Plus que {x} pour la livraison offerte",secure:"Vous saisirez l’adresse et la carte sur notre page de paiement sécurisée.",ok:"Commande enregistrée. Nous vous contacterons pour confirmer.",deliv:"Livraison estimée",ins:"En stock",fill:"Merci de remplir tous les champs",wl:"Votre liste de favoris est vide."},
+ar:{new:"جديد",women:"نساء",men:"رجال",acc:"إكسسوارات",all:"الكل",search:"بحث",bag:"السلة",add:"أضف إلى السلة",pick:"اختر المقاس",added:"تمت الإضافة إلى السلة",empty:"سلتك فارغة",total:"المجموع",sub:"المجموع الفرعي",ship:"الشحن",free:"مجاني",card:"الدفع بالبطاقة",cod:"الدفع عند الاستلام",close:"إغلاق",name:"الاسم الكامل",phone:"الهاتف",email:"البريد الإلكتروني",addr:"العنوان",city:"المدينة",place:"تأكيد الطلب",left:"متبقي",sold:"نفد",size:"المقاس",color:"اللون",sizeg:"دليل المقاسات",look:"أكمل الإطلالة",price:"أعلى سعر",nonly:"الجديد فقط",feat:"مميز",lo:"السعر: من الأقل",hi:"السعر: من الأعلى",top:"الأعلى تقييماً",none:"لا توجد منتجات.",viewall:"عرض الكل",rem:"إزالة",rev:"التقييمات",shop:"المتجر",nw:"وصل حديثاً",bs:"الأكثر مبيعاً",h1:"أناقة هادئة، كل يوم.",hp:"قصّات مدروسة بأقمشة طبيعية، صُمّمت لتدوم سنوات لا موسماً واحداً.",cta:"تسوّق المجموعة",bh:"أرقى الأقمشة، بقصّات تناسب خزانة عصرية.",knit:"اكتشف الحياكة",a1:"شحن مجاني فوق 120 دولاراً",a2:"إرجاع مجاني خلال 30 يوماً",a3:"الدفع عند الاستلام متاح",away:"أضف {x} للحصول على شحن مجاني",secure:"ستُدخل العنوان وبيانات البطاقة في صفحة الدفع الآمنة.",ok:"تم تسجيل الطلب. سنتصل بك للتأكيد.",deliv:"التوصيل المتوقع",ins:"متوفر",fill:"يرجى ملء جميع الحقول",wl:"قائمة المفضلة فارغة."}};
+var lang=LS.g("mn_lang","en"),cart=LS.g("mn_cart",[]),wish=LS.g("mn_wish",[]),sel={},ai=0;
+var T=function(k){return (V[lang]&&V[lang][k])||V.en[k]||k};
+function stock(p,s){return(p.id.charCodeAt(1)*7+s.charCodeAt(0)*3+s.length*5)%9}
+function stars(r){var n=Math.round(r);return "★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)}
+function art(p,ci,v){var c=p.c[ci],vb=["0 0 300 400","50 40 200 267","0 0 300 400","85 95 130 173"][v];
+var x=p.t==="bag"?'<path d="M112 170Q112 92 150 92T188 170" fill="none" stroke="'+c+'" stroke-width="7"/>':p.t==="hood"?'<ellipse cx="150" cy="78" rx="30" ry="24" fill="'+c+'"/>':p.t==="skirt"?'<path d="M138 95L112 335M162 95L188 335M150 95V335" stroke="#fff" stroke-opacity=".22" fill="none"/>':'<path d="M150 62V'+(p.t==="pants"?150:120)+'" stroke="#fff" stroke-opacity=".25" fill="none"/>';
+return '<svg viewBox="'+vb+'" preserveAspectRatio="xMidYMid slice" role="img" aria-label="'+p.n+'"><rect width="300" height="400" fill="'+c+'" opacity=".13"/><circle cx="150" cy="210" r="'+(v===2?90:140)+'" fill="'+c+'" opacity=".1"/><g'+(v===2?' transform="translate(300 0) scale(-1 1)"':'')+'><path d="'+SH[p.t]+'" fill="'+c+'"/>'+x+'</g></svg>'}
+function card(p){return '<div class="pc"><div class="ph"><a href="#'+p.id+'">'+art(p,0,0)+'</a>'+(p.tag?'<span class="tag">'+p.tag+'</span>':'')+'<button class="heart" data-w="'+p.id+'" aria-label="Wishlist">'+(wish.indexOf(p.id)>-1?"♥":"♡")+'</button><div class="qa">'+SZ.map(function(s){return '<button data-q="'+p.id+'" data-s="'+s+'"'+(stock(p,s)?"":" disabled")+'>'+s+'</button>'}).join("")+'</div></div><a href="#'+p.id+'"><div class="n">'+p.n+'</div><div class="pr">$'+p.pr+' · <span>'+stars(p.r)+'</span></div></a></div>'}
+function grid(a){return a.length?'<div class="grid">'+a.map(card).join("")+'</div>':'<p class="none">'+T("none")+'</p>'}
+function home(){var nw=P.slice().sort(function(a,b){return (b.tag==="New")-(a.tag==="New")}).slice(0,4),bs=P.slice().sort(function(a,b){return b.rc-a.rc}).slice(0,4);
+var tiles=[["Women","linear-gradient(180deg,#8d8578,#2b2a28)","women"],["Men","linear-gradient(180deg,#5b6470,#1f2a3a)","men"],["Accessories","linear-gradient(180deg,#b58f64,#3a2a20)","acc"]].map(function(c){return '<a class="cat" href="#shop" data-cat="'+c[0]+'" style="background:'+c[1]+'">'+T(c[2])+'</a>'}).join("");
+var rv=[["Salma R.",5,"Beautiful quality, fits true to size."],["Youssef B.",5,"Heavier than I expected, in the best way."],["Camille D.",4,"Lovely cut. I sized up for a looser fit."]].map(function(r){return '<div><div>'+stars(r[1])+'</div><p>“'+r[2]+'”</p><span class="lbl">'+r[0]+'</span></div>'}).join("");
+return '<section class="hero"><div class="txt"><div class="lbl" style="margin-bottom:14px">Autumn / Winter 2026</div><h1>'+T("h1")+'</h1><p>'+T("hp")+'</p><div><a class="btn" href="#shop" data-cat="">'+T("cta")+'</a></div></div><div class="img"><svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice"><circle cx="215" cy="125" r="72" fill="#fff" opacity=".14"/><path d="'+SH.coat+'" fill="#1c1b19" transform="translate(-14 22) scale(1.06)"/></svg></div></section>'
++'<div class="mq"><span>MAISON NOIR · '+T("a1")+' · '+T("a2")+' · '+T("a3")+' · </span></div>'
++'<section class="sec"><div class="cats">'+tiles+'</div></section>'
++'<section class="sec" style="padding-top:0"><h2><span>'+T("nw")+'</span><a href="#shop" data-cat="" style="text-decoration:underline;text-underline-offset:5px">'+T("viewall")+'</a></h2>'+grid(nw)+'</section>'
++'<section class="band"><h3>'+T("bh")+'</h3><a class="btn" href="#p4">'+T("knit")+'</a></section>'
++'<section class="sec"><h2>'+T("bs")+'</h2>'+grid(bs)+'</section>'
++'<section class="sec" style="padding-top:0"><h2>'+T("rev")+'</h2><div class="rv3">'+rv+'</div></section>'
++'<div class="perks"><div>'+T("a1")+'</div><div>'+T("a2")+'</div><div>'+T("a3")+'</div></div>'}
+function fresh(){return{cat:"",max:300,col:"",sz:"",nw:false,sort:"feat",q:""}}
+var filt=fresh();
+function list(){var r=P.filter(function(p){return(!filt.cat||p.cat===filt.cat)&&p.pr<=filt.max&&(!filt.col||p.c.indexOf(filt.col)>-1)&&(!filt.sz||stock(p,filt.sz)>0)&&(!filt.nw||p.tag==="New")&&(!filt.q||(p.n+" "+p.cat+" "+p.f).toLowerCase().indexOf(filt.q.toLowerCase())>-1)});
+if(filt.sort==="lo")r.sort(function(a,b){return a.pr-b.pr});else if(filt.sort==="hi")r.sort(function(a,b){return b.pr-a.pr});else if(filt.sort==="rt")r.sort(function(a,b){return b.r-a.r});return r}
+function chips(k,vals,labs){return vals.map(function(v,i){return '<button data-k="'+k+'" data-v="'+v+'" class="'+(filt[k]===v?"on":"")+'">'+labs[i]+'</button>'}).join("")}
+function shop(){var cols=[];P.forEach(function(p){p.c.forEach(function(c){if(cols.indexOf(c)<0)cols.push(c)})});
+var dots='<button data-k="col" data-v="" class="'+(filt.col===""?"on":"")+'">'+T("all")+'</button>'+cols.map(function(c){return '<button class="dot'+(filt.col===c?" on":"")+'" data-k="col" data-v="'+c+'" style="background:'+c+'" aria-label="'+c+'"></button>'}).join("");
+var so=[["feat","feat"],["lo","lo"],["hi","hi"],["rt","top"]].map(function(o){return '<option value="'+o[0]+'"'+(filt.sort===o[0]?" selected":"")+'>'+T(o[1])+'</option>'}).join("");
+return '<div class="shop"><aside id="flt"><div class="grp"><span class="lbl">'+T("shop")+'</span><div class="chips">'+chips("cat",["","Women","Men","Accessories"],[T("all"),T("women"),T("men"),T("acc")])+'</div></div>'
++'<div class="grp"><span class="lbl">'+T("price")+': $<span id="mv">'+filt.max+'</span></span><input type="range" id="mx" min="40" max="300" step="10" value="'+filt.max+'"></div>'
++'<div class="grp"><span class="lbl">'+T("size")+'</span><div class="chips">'+chips("sz",[""].concat(SZ),[T("all")].concat(SZ))+'</div></div>'
++'<div class="grp"><span class="lbl">'+T("color")+'</span><div class="chips">'+dots+'</div></div>'
++'<div class="grp"><label class="lbl"><input type="checkbox" id="nw"'+(filt.nw?" checked":"")+'> '+T("nonly")+'</label></div></aside>'
++'<section><div class="shead"><span class="lbl" id="cnt"></span><select class="s" id="so">'+so+'</select></div><div id="sg"></div></section></div>'}
+function upd(){$("sg").innerHTML=grid(list());$("cnt").textContent=list().length+(filt.q?' · “'+filt.q+'”':"")}
+function bindShop(){upd();$("flt").onclick=function(e){var b=e.target.closest("button");if(!b)return;filt[b.dataset.k]=b.dataset.v;$("app").innerHTML=shop();bindShop()};
+$("mx").oninput=function(){filt.max=+this.value;$("mv").textContent=this.value;upd()};$("nw").onchange=function(){filt.nw=this.checked;upd()};$("so").onchange=function(){filt.sort=this.value;upd()}}
+function fd(n){return new Date(Date.now()+n*864e5).toLocaleDateString(lang==="ar"?"ar-MA":lang==="fr"?"fr-MA":"en-GB",{day:"numeric",month:"short"})}
+function product(p){sel={col:0,sz:"",v:0,q:1};
+var sw=p.c.map(function(c,i){return '<button data-c="'+i+'" class="'+(i?"":"on")+'" style="background:'+c+'" aria-label="'+p.cn[i]+'"></button>'}).join("");
+var sz=SZ.map(function(s){return '<button data-s="'+s+'"'+(stock(p,s)?"":" disabled")+'>'+s+'</button>'}).join("");
+var th=[0,1,2,3].map(function(v){return '<button data-v="'+v+'" class="'+(v?"":"on")+'">'+art(p,0,v)+'</button>'}).join("");
+var look=P.filter(function(x){return x.id!==p.id&&x.cat!==p.cat||x.cat==="Accessories"&&x.id!==p.id}).slice(0,4);
+return '<div class="pd"><div><div class="main" id="mn">'+art(p,0,0)+'</div><div class="th" id="th">'+th+'</div></div>'
++'<div class="info"><div class="crumb"><a href="#">MAISON NOIR</a> / <a href="#shop" data-cat="'+p.cat+'">'+p.cat+'</a></div><h1>'+p.n+'</h1>'
++'<div style="margin-bottom:18px">$'+p.pr+' · <span>'+stars(p.r)+'</span> <span class="lbl">'+p.r+' ('+p.rc+')</span></div>'
++'<div class="lbl">'+T("color")+' — <b id="cname" style="color:var(--fg)">'+p.cn[0]+'</b></div><div class="sw" id="sw">'+sw+'</div>'
++'<div class="lbl">'+T("size")+' <a href="#" id="sg" style="float:right;text-decoration:underline">'+T("sizeg")+'</a></div><div class="sz" id="sz">'+sz+'</div><div class="lbl" id="stk" style="min-height:18px"></div>'
++'<div class="row"><div class="qty"><button id="qm">−</button><span id="qv">1</span><button id="qp">+</button></div><button class="add" id="add">'+T("add")+'</button><button class="hl" data-w="'+p.id+'" aria-label="Wishlist">'+(wish.indexOf(p.id)>-1?"♥":"♡")+'</button></div>'
++'<div class="lbl">'+T("deliv")+': '+fd(3)+' – '+fd(6)+'</div>'
++'<div class="acc"><details open><summary>Description</summary><p>Cut for a relaxed, modern fit in a considered fabric. Designed to be worn for years, not seasons.</p></details><details><summary>Materials &amp; care</summary><p>'+p.f+'</p></details><details><summary>'+T("ship")+' &amp; returns</summary><p>'+INFO.shipping[1]+'</p></details><details><summary>'+T("rev")+' ('+p.rc+')</summary><p>★★★★★ “Beautiful quality, fits true to size.” — Salma R.</p><p>★★★★☆ “Lovely cut. I sized up for a looser fit.” — Camille D.</p></details></div></div></div>'
++'<section class="sec" style="padding-top:0"><h2>'+T("look")+'</h2>'+grid(look)+'</section>'}
+function bindProduct(p){var sw=$("sw"),sz=$("sz"),mn=$("mn");
+function setImg(){mn.classList.remove("z");mn.innerHTML=art(p,sel.col,sel.v)}
+sw.onclick=function(e){var b=e.target.closest("button");if(!b)return;sel.col=+b.dataset.c;[].forEach.call(sw.children,function(x){x.classList.toggle("on",x===b)});$("cname").textContent=p.cn[sel.col];setImg()};
+$("th").onclick=function(e){var b=e.target.closest("button");if(!b)return;sel.v=+b.dataset.v;[].forEach.call($("th").children,function(x){x.classList.toggle("on",x===b)});setImg()};
+mn.onclick=function(){mn.classList.toggle("z");mn.firstChild.style.transform=mn.classList.contains("z")?"scale(1.9)":"none"};
+mn.onmousemove=function(e){if(!mn.classList.contains("z"))return;var r=mn.getBoundingClientRect();mn.firstChild.style.transformOrigin=((e.clientX-r.left)/r.width*100)+"% "+((e.clientY-r.top)/r.height*100)+"%"};
+sz.onclick=function(e){var b=e.target.closest("button");if(!b||b.disabled)return;sel.sz=b.dataset.s;sel.q=1;$("qv").textContent=1;[].forEach.call(sz.children,function(x){x.classList.toggle("on",x===b)});var n=stock(p,sel.sz);$("stk").textContent=n<=3?n+" "+T("left"):T("ins")};
+$("qm").onclick=function(){sel.q=Math.max(1,sel.q-1);$("qv").textContent=sel.q};
+$("qp").onclick=function(){if(sel.sz&&sel.q>=stock(p,sel.sz))return;sel.q=Math.min(9,sel.q+1);$("qv").textContent=sel.q};
+$("sg").onclick=function(e){e.preventDefault();$("gm").classList.add("on")};
+$("add").onclick=function(){if(!sel.sz){toast(T("pick"));return}add(p.id,sel.sz,sel.q,sel.col,true)}}
+function wishPage(){return '<section class="sec"><h2>'+T("wish")+' ('+wish.length+')</h2>'+(wish.length?grid(wish.map(byId)):'<p class="none">'+T("wl")+' <a href="#shop" data-cat="" style="text-decoration:underline">'+T("shop")+'</a></p>')+'</section>'}
+function info(k){return '<section class="sec" style="max-width:720px"><h2>'+INFO[k][0]+'</h2><p style="color:var(--mut);font-size:15px">'+INFO[k][1]+'</p></section>'}
+function route(){var h=location.hash.slice(1),p=byId(h),a=$("app");
+a.innerHTML=p?product(p):h==="shop"?shop():h==="wishlist"?wishPage():INFO[h]?info(h):home();
+if(h==="shop")bindShop();if(p)bindProduct(p);window.scrollTo(0,0);document.title=(p?p.n+" – ":h==="shop"?T("shop")+" – ":"")+"MAISON NOIR"}
+function add(id,sz,q,col,open){var p=byId(id),have=0,hit=null;cart.forEach(function(c){if(c.id===id&&c.sz===sz&&c.col===col){hit=c}if(c.id===id&&c.sz===sz)have+=c.q});
+if(have+q>stock(p,sz)){toast(stock(p,sz)+" "+T("left"));return}
+if(hit)hit.q+=q;else cart.push({id:id,sz:sz,col:col||0,q:q});draw();toast(T("added"));if(open)$("drawer").classList.add("open")}
+function draw(){var n=0,sub=0;cart.forEach(function(c){n+=c.q;sub+=byId(c.id).pr*c.q});$("cn").textContent=n;$("wn").textContent=wish.length;
+$("cartlist").innerHTML=cart.length?cart.map(function(c,i){var p=byId(c.id);return '<div class="ci"><div class="cim">'+art(p,c.col,0)+'</div><div style="flex:1"><a href="#'+p.id+'" data-x="1">'+p.n+'</a><small>'+T("size")+' '+c.sz+' · '+p.cn[c.col]+'</small><div class="qty"><button data-m="'+i+'">−</button><span>'+c.q+'</span><button data-pl="'+i+'">+</button></div></div><div>$'+p.pr*c.q+'<br><button class="lk" data-r="'+i+'">'+T("rem")+'</button></div></div>'}).join(""):'<p style="color:var(--mut)">'+T("empty")+'</p>';
+var sh=sub>=120||!sub?0:9;$("prog").style.width=Math.min(100,sub/1.2)+"%";$("ptxt").textContent=sub>=120?T("a1"):T("away").replace("{x}","$"+(120-sub));
+$("sub").textContent="$"+sub;$("shp").textContent=sh?"$"+sh:T("free");$("tot").textContent="$"+(sub+sh);LS.s("mn_cart",cart);LS.s("mn_wish",wish)}
+$("cartlist").onclick=function(e){var d=e.target.dataset,c;if(d.m!==undefined){c=cart[+d.m];if(--c.q<1)cart.splice(+d.m,1)}else if(d.pl!==undefined){c=cart[+d.pl];if(c.q<stock(byId(c.id),c.sz))c.q++;else toast(stock(byId(c.id),c.sz)+" "+T("left"))}else if(d.r!==undefined)cart.splice(+d.r,1);else return;draw()};
+function flat(){return cart.reduce(function(a,c){for(var i=0;i<c.q;i++)a.push({id:c.id,sz:c.sz});return a},[])}
+function post(u,b){return fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}).then(function(r){return r.json()})}
+function openCk(mode){if(!cart.length){toast(T("empty"));return}var cod=mode==="cod",sub=0;cart.forEach(function(c){sub+=byId(c.id).pr*c.q});var tot=sub+(sub>=120?0:9);
+$("ckb").innerHTML='<div class="chips" style="margin:6px 0 16px"><button data-md="card" class="'+(cod?"":"on")+'">'+T("card")+'</button><button data-md="cod" class="'+(cod?"on":"")+'">'+T("cod")+'</button></div>'
++(cod?'<div class="f"><input id="fn" placeholder="'+T("name")+'" autocomplete="name"><input id="fp" placeholder="'+T("phone")+'" autocomplete="tel"><input id="fe" type="email" placeholder="'+T("email")+'" autocomplete="email"><input id="fa" placeholder="'+T("addr")+'" autocomplete="street-address"><input id="fc" placeholder="'+T("city")+'" autocomplete="address-level2"></div>':'<p class="lbl" style="margin:0 0 16px">'+T("secure")+'</p>')
++'<div class="sm" style="margin-bottom:12px"><b>'+T("total")+'</b><b>$'+tot+'</b></div><button class="add" id="go">'+(cod?T("place"):T("card"))+'</button>';
+$("ck").classList.add("on");$("drawer").classList.remove("open");
+$("go").onclick=function(){var b=this;
+if(!cod){b.disabled=true;post("/api/checkout",{items:flat()}).then(function(d){if(d.url)location.href=d.url;else{b.disabled=false;toast(d.error||T("off"))}}).catch(function(){b.disabled=false;toast(T("off"))});return}
+var cu={name:$("fn").value.trim(),phone:$("fp").value.trim(),email:$("fe").value.trim(),address:$("fa").value.trim(),city:$("fc").value.trim()};
+if(!cu.name||!cu.phone||!cu.address||!cu.city){toast(T("fill"));return}
+b.disabled=true;post("/api/cod",{items:flat(),customer:cu}).then(function(d){if(d.ok){cart=[];draw();$("ckb").innerHTML='<h3 style="font-weight:300;font-size:26px;margin:10px 0">✓ #'+String(d.orderId).slice(0,8).toUpperCase()+'</h3><p>'+T("ok")+'</p><button class="add" data-x="1">'+T("close")+'</button>'}else{b.disabled=false;toast(d.error||T("off"))}}).catch(function(){b.disabled=false;toast(T("off"))})}}
+$("ckb").onclick=function(e){var b=e.target.closest("[data-md]");if(b)openCk(b.dataset.md)};
+$("co").onclick=function(){openCk("card")};$("cod").onclick=function(){openCk("cod")};$("cb").onclick=function(){$("drawer").classList.add("open")};
+function closeM(){[].forEach.call(document.querySelectorAll(".modal"),function(m){m.classList.remove("on")});$("drawer").classList.remove("open")}
+function toast(m){var t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(function(){t.style.display="none"},2200)}
+function toggleW(id){var i=wish.indexOf(id);if(i>-1)wish.splice(i,1);else wish.push(id);draw();[].forEach.call(document.querySelectorAll('[data-w="'+id+'"]'),function(b){b.textContent=wish.indexOf(id)>-1?"♥":"♡"});if(location.hash==="#wishlist")route()}
+document.addEventListener("click",function(e){var t=e.target,a=t.closest("a[data-cat]"),w=t.closest("[data-w]"),q=t.closest("[data-q]");
+if(a)filt={cat:a.dataset.cat||"",max:300,col:"",sz:"",nw:!!a.dataset.new,sort:"feat",q:""};
+if(w){e.preventDefault();toggleW(w.dataset.w);return}
+if(q&&!q.disabled){add(q.dataset.q,q.dataset.s,1,0,false);return}
+if(t.classList.contains("modal")||t.closest("[data-x]"))closeM()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM()});
+$("sb").onclick=function(){$("sm").classList.add("on");$("sq").value="";$("sr").innerHTML="";setTimeout(function(){$("sq").focus()},50)};
+$("sq").oninput=function(){var q=this.value.trim().toLowerCase();$("sr").innerHTML=q?(P.filter(function(p){return(p.n+" "+p.cat+" "+p.f).toLowerCase().indexOf(q)>-1}).slice(0,6).map(function(p){return '<a class="sr" href="#'+p.id+'" data-x="1"><span>'+p.n+'</span><span>$'+p.pr+'</span></a>'}).join("")||'<p class="none">'+T("none")+'</p>'):""};
+$("sq").onkeydown=function(e){if(e.key==="Enter"&&this.value.trim()){filt=fresh();filt.q=this.value.trim();closeM();if(location.hash==="#shop")route();else location.hash="shop"}};
+$("fg").onclick=function(e){e.preventDefault();$("gm").classList.add("on")};
+$("nlb").onclick=function(){if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test($("nle").value)){toast("✓");$("nle").value=""}else toast(T("email"))};
+function applyL(){document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";$("lg").value=lang;
+[].forEach.call(document.querySelectorAll("[data-i]"),function(e){e.textContent=T(e.dataset.i)});
+[].forEach.call(document.querySelectorAll("[data-ph]"),function(e){e.placeholder=T(e.dataset.ph)});
+$("ann").textContent=T("a"+(ai+1));draw();route()}
+$("lg").onchange=function(){lang=this.value;LS.s("mn_lang",lang);applyL()};
+setInterval(function(){ai=(ai+1)%3;$("ann").textContent=T("a"+(ai+1))},4000);
+$("yr").textContent=new Date().getFullYear();
+if(/[?&]paid=/.test(location.search)){cart=[];try{history.replaceState(null,"",location.pathname)}catch(e){}}
+window.addEventListener("hashchange",route);applyL();
+</script>
+</body>
+</html>

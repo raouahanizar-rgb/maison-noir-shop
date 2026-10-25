@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Admin – MAISON NOIR</title>
+<style>
+:root{--bg:#fff;--fg:#111;--mut:#6b6b6b;--line:#e6e6e6;--card:#f6f5f2;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--bg:#0e0e0e;--fg:#f2f2f2;--mut:#9a9a9a;--line:#2a2a2a;--card:#1b1b1a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 Helvetica,Arial,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 4vw;border-bottom:1px solid var(--line)}
+.logo{letter-spacing:.3em;font-weight:600}main{padding:24px 4vw}
+input,select,button{font:inherit;color:inherit;background:var(--bg);border:1px solid var(--line);padding:9px 12px}
+button{cursor:pointer}button.p{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+.stat{background:var(--card);padding:16px}.stat b{display:block;font-size:22px;font-weight:500}.stat span{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.1em}
+@media(max-width:700px){.stats{grid-template-columns:1fr 1fr}}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.ord{border:1px solid var(--line);padding:14px;margin-bottom:10px;display:grid;grid-template-columns:1.2fr 1.4fr 1fr;gap:14px}
+@media(max-width:800px){.ord{grid-template-columns:1fr}}
+.ord small{color:var(--mut)}.badge{display:inline-block;padding:2px 8px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;background:var(--card)}
+#login{max-width:340px;margin:18vh auto;text-align:center}#login input{width:100%;margin:14px 0}
+.hide{display:none}
+</style></head><body>
+<div id="login"><div class="logo">MAISON NOIR</div><p style="color:var(--mut)">Admin sign in</p>
+<input id="pw" type="password" placeholder="Password" autocomplete="current-password"><button class="p" id="go" style="width:100%">Sign in</button><p id="err" style="color:#c0392b"></p></div>
+<div id="panel" class="hide"><header><span class="logo">ORDERS</span><button id="out">Sign out</button></header>
+<main><div class="stats"><div class="stat"><b id="s1">0</b><span>Orders</span></div><div class="stat"><b id="s2">0</b><span>To fulfil</span></div><div class="stat"><b id="s3">$0</b><span>Revenue (paid, shipped, delivered)</span></div><div class="stat"><b id="s4">0</b><span>COD to confirm</span></div></div>
+<div class="bar"><input id="q" placeholder="Search name, phone, email, order id" style="flex:1;min-width:200px"><select id="f"><option value="">All statuses</option></select><button id="rf">Refresh</button></div>
+<div id="list"></div></main></div>
+<script>
+var ST=["pending","paid","cod_pending","cod_confirmed","shipped","delivered","cancelled","refunded"],all=[];
+var $=function(i){return document.getElementById(i)};
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+ST.forEach(function(s){var o=document.createElement("option");o.value=s;o.textContent=s.replace("_"," ");$("f").appendChild(o)});
+function api(u,b){return fetch(u,b?{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}:{}).then(function(r){return r.json().then(function(d){if(r.status===401&&u.indexOf("login")<0){show(false)}return d})})}
+function show(on){$("login").classList.toggle("hide",on);$("panel").classList.toggle("hide",!on)}
+$("go").onclick=function(){api("/api/admin/login",{password:$("pw").value}).then(function(d){if(d.ok){show(true);load()}else $("err").textContent=d.error||"Error"})};
+$("pw").onkeydown=function(e){if(e.key==="Enter")$("go").click()};
+$("out").onclick=function(){api("/api/admin/logout",{}).then(function(){show(false)})};
+$("rf").onclick=load;$("q").oninput=render;$("f").onchange=render;
+function load(){api("/api/admin/orders").then(function(d){if(Array.isArray(d)){all=d;show(true);render()}})}
+function render(){var q=$("q").value.toLowerCase(),f=$("f").value;
+var rows=all.filter(function(o){var c=o.customer||{};var hay=[o.id,c.name,c.phone,c.email,o.customerEmail].join(" ").toLowerCase();return (!f||o.status===f)&&(!q||hay.indexOf(q)>-1)});
+var rev=0,todo=0,cod=0;all.forEach(function(o){if(["paid","shipped","delivered"].indexOf(o.status)>-1)rev+=o.total;if(o.status==="paid"||o.status==="cod_confirmed")todo++;if(o.status==="cod_pending")cod++});
+$("s1").textContent=all.length;$("s2").textContent=todo;$("s3").textContent="$"+rev;$("s4").textContent=cod;
+$("list").innerHTML=rows.length?rows.map(card).join(""):'<p style="color:var(--mut)">No orders yet.</p>'}
+function card(o){var c=o.customer||{},ship=o.ship||{},who=c.name||ship.name||"Card customer",em=c.email||o.customerEmail||"";
+var addr=c.address?c.address+", "+c.city:(ship.address?Object.keys(ship.address).map(function(k){return ship.address[k]}).filter(Boolean).join(", "):"");
+var items=o.lines.map(function(l){return esc(l.name)+" <small>("+esc(l.size)+")</small>"}).join("<br>");
+var opts=ST.map(function(s){return '<option value="'+s+'"'+(s===o.status?" selected":"")+'>'+s.replace("_"," ")+'</option>'}).join("");
+return '<div class="ord"><div><b>#'+esc(o.id.slice(0,8).toUpperCase())+'</b> <span class="badge">'+esc(o.status.replace("_"," "))+'</span><br><small>'+new Date(o.createdAt).toLocaleString()+' · '+esc(o.method)+'</small><br><br><b>$'+o.total+'</b> <small>(shipping $'+o.shipping+')</small></div>'
++'<div><b>'+esc(who)+'</b><br>'+(c.phone?'<small>'+esc(c.phone)+'</small><br>':'')+(em?'<small>'+esc(em)+'</small><br>':'')+'<small>'+esc(addr)+'</small><br><br>'+items+'</div>'
++'<div><select data-s="'+esc(o.id)+'" style="width:100%">'+opts+'</select><input data-t="'+esc(o.id)+'" placeholder="Tracking number" value="'+esc(o.tracking||"")+'" style="width:100%;margin:6px 0"><button class="p" data-save="'+esc(o.id)+'" style="width:100%">Save &amp; notify customer</button></div></div>'}
+$("list").onclick=function(e){var id=e.target.dataset.save;if(!id)return;
+var st=document.querySelector('[data-s="'+id+'"]').value,tr=document.querySelector('[data-t="'+id+'"]').value;
+e.target.textContent="Saving...";api("/api/admin/orders/"+id+"/status",{status:st,tracking:tr}).then(function(){load()})};
+load();
+</script></body></html>
