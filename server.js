@@ -1,5 +1,3 @@
-import { inject } from '@vercel/analytics';
-inject();
 import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
